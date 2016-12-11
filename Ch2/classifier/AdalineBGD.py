@@ -8,9 +8,8 @@ Weight : W = [w1, ..., wm] (Init : 0s or small random value)
 Net Input:
     z = transpose(W) * X = (-threshold) * x0 + w1x1 + ... + wmxm (x0 = 1)
 
-
-Adaline : ADAptive LInear NEuron
 Adaline rule (Widrow-Hoff rule):
+Adaline : ADAptive LInear NEuron
 Linear activation function:
     o(z) = z (Count errors and update weight; Differentiable)
 Quantizer : Unit step function (Predict result)
