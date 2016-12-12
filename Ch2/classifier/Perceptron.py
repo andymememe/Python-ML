@@ -29,6 +29,7 @@ Constraint:
 2. η must be very small to convergence
 """
 import numpy as np
+from numpy.random import RandomState
 
 
 class Perceptron(object):
@@ -40,6 +41,8 @@ class Perceptron(object):
         Learning rate (0.0 ~ 1.0)
     n_iter : int (Default : 10)
         Passes over the training dateset
+    random_seed : int (Default : 1)
+        Random seed
 
     Attributes:
     w_ : 1d-array
@@ -48,9 +51,10 @@ class Perceptron(object):
         # of misclassifications in every epochs.
     """
 
-    def __init__(self, eta=0.01, n_iter=10):
+    def __init__(self, eta=0.01, n_iter=50, random_seed=1):
         self.eta = eta
         self.n_iter = n_iter
+        self.random_seed = random_seed
         self.w_ = []
         self.errors_ = []
 
@@ -68,7 +72,8 @@ class Perceptron(object):
         Returns:
         self : object
         """
-        self.w_ = np.zeros(1 + X.shape[1])
+        rgen = RandomState(self.random_seed)
+        self.w_ = rgen.normal(loc=0.0, scale=0.01, size=1 + X.shape[1])
 
         for _ in range(self.n_iter):
             errors = 0
